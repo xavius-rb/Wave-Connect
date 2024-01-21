@@ -8,6 +8,7 @@ on:
       - 'feature/**'
 jobs:
   rspec:
+    name: "RSpec"
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
@@ -38,7 +39,7 @@ jobs:
           target: build
           tags: wave:latest
 
-      - name: ":rspec: Run tests"
+      - name: Run tests
         run: docker compose -f compose.yml -f compose.ci.yml up --abort-on-container-exit
         #env:
         #  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}

@@ -1,6 +1,6 @@
 # WaveConnect
 ## App Details
-![RSpec](https://github.com/xavius-rb/Wave-Connect/actions/workflows/ci.yml/badge.svg)
+[![RoR CI](https://github.com/xavius-rb/Wave-Connect/actions/workflows/ci.yml/badge.svg)](https://github.com/xavius-rb/Wave-Connect/actions/workflows/ci.yml)
 
 ## Setup
 

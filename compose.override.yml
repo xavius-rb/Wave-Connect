@@ -1,0 +1,37 @@
+services:
+  web: &app_base
+    command: ./bin/rails server -b 0.0.0.0
+    entrypoint: /rails/bin/docker-entrypoint
+    build:
+      context: .
+      target: build
+    volumes:
+      - .:/rails
+      - bundle_data:/usr/local/bundle
+    environment:
+      - RAILS_ENV=development
+      - ENABLE_BOOTSNAP=true
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/wave?
+
+  js:
+    <<: *app_base
+    command: yarn build --watch
+    ports: []
+
+  css:
+    <<: *app_base
+    command: yarn watch:css
+    ports: []
+
+  postgres:
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:cached
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_INITDB_ARGS="--username=dbuser"
+
+volumes:
+  postgres_data: {}
+  bundle_data: {}

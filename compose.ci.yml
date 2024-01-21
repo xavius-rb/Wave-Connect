@@ -1,5 +1,6 @@
 services:
   web: &app_base
+    image: wave:test
     command: /bin/bash -c './bin/rails db:test:prepare && ./bin/rails spec'
     tty: true
     stdin_open: true

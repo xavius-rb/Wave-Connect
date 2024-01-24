@@ -14,6 +14,14 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/wave?
 
+  postgres:
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:cached
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_INITDB_ARGS="--username=dbuser"
+
   js:
     <<: *app_base
     command: yarn build --watch
@@ -23,14 +31,6 @@ services:
     <<: *app_base
     command: yarn watch:css
     ports: []
-
-  postgres:
-    volumes:
-      - postgres_data:/var/lib/postgresql/data:cached
-    environment:
-      - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=dbpassword
-      - POSTGRES_INITDB_ARGS="--username=dbuser"
 
 volumes:
   postgres_data: {}

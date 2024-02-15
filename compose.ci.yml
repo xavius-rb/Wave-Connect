@@ -2,9 +2,6 @@ services:
   web: &app_base
     image: wave:test
     command: /bin/bash -c './bin/rails db:test:prepare && ./bin/rails spec'
-    #entrypoint: /rails/bin/docker-entrypoint
-    tty: true
-    stdin_open: true
     build:
       context: .
       target: build
@@ -12,6 +9,8 @@ services:
       - RAILS_ENV=test
       - REDIS_URL=redis://redis:6379/0
       - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/wave?
+    depends_on:
+      - postgres
 
   postgres:
     environment:

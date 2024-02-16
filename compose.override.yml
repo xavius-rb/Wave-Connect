@@ -14,12 +14,6 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/wave?
 
-  worker:
-    <<: *app_base
-    command: bundle exec sidekiq
-    depends_on:
-      - web
-
   postgres:
     volumes:
       - postgres_data:/var/lib/postgresql/data:cached

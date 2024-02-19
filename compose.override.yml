@@ -1,7 +1,7 @@
 services:
   web: &app_base
     command: ./bin/rails server -b 0.0.0.0
-    entrypoint: /rails/bin/docker-entrypoint
+    entrypoint: /rails/bin/docker-entrypoint.sh
     build:
       context: .
       target: build

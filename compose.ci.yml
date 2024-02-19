@@ -1,7 +1,7 @@
 services:
   web: &app_base
     image: wave:test
-    command: /bin/bash -c './bin/rails db:test:prepare && ./bin/rails spec'
+    command: /bin/sh -c './bin/rails db:test:prepare && ./bin/rails spec'
     build:
       context: .
       target: build

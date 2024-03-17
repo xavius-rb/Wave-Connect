@@ -4,7 +4,7 @@ module SourceControl
       GITLAB_API_URL = 'https://gitlab.com/api/v4'.freeze
 
       def initialize
-        @connection ||= ConnectionFactory.connection(url: GITLAB_API_URL)
+        @connection ||= raise 'Gitlab not supported yet.'
       end
 
       def repositories(org:)

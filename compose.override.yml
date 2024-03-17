@@ -12,11 +12,11 @@ services:
       - RAILS_ENV=development
       - ENABLE_BOOTSNAP=true
       - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/wave?
+      - DATABASE_URL=postgresql://dbuser:dbpassword@database:5432/wave?
 
-  postgres:
+  database:
     volumes:
-      - postgres_data:/var/lib/postgresql/data:cached
+      - database_data:/var/lib/postgresql/data:cached
     environment:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=dbpassword
@@ -33,5 +33,5 @@ services:
     ports: []
 
 volumes:
-  postgres_data: {}
+  database_data: {}
   bundle_data: {}

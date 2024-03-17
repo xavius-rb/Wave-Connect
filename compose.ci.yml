@@ -8,11 +8,9 @@ services:
     environment:
       - RAILS_ENV=test
       - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/wave?
-    depends_on:
-      - postgres
+      - DATABASE_URL=postgresql://dbuser:dbpassword@database:5432/wave?
 
-  postgres:
+  database:
     environment:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=dbpassword

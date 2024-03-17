@@ -1,0 +1,26 @@
+services:
+  web: &app_base
+    command: ./bin/rails server -b 0.0.0.0
+    entrypoint: /rails/bin/docker-entrypoint
+    build:
+      context: .
+      target: deployment
+    ports:
+      - 80:80
+    environment:
+      - PORT=80
+      - RAILS_ENV=production
+      - BUNDLE_DEPLOYMENT=1
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://dbuser:dbpassword@database:5432/wave?
+      - RAILS_MASTER_KEY=your_master_key
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_MIN_THREADS=1
+      - RAILS_MAX_THREADS=5
+      - WEB_CONCURRENCY=4
+
+  database:
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_INITDB_ARGS="--username=dbuser"

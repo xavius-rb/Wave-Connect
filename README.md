@@ -32,3 +32,15 @@ docker run --rm --name redis --network wave_network --network-alias redis -d red
 ```
 docker run --rm --network wave_network --name wave_app -p 3000:3000 -e RAILS_ENV=development -e REDIS_URL=redis://redis:6379/0 -e DATABASE_URL="postgresql://dbuser:dbpassword@postgres:5432/wave?" wave:latest
 ```
+
+## Kubernetes with Minikube
+```
+kubectl apply -f postgres-pod.yaml,postgres-service.yaml
+kubectl apply -f web-deployment.yaml,load-balancer.yaml
+
+minikube service web-service
+```
+
+Todo:
+- test replacing load-balancer.yaml with web-service.yaml
+- remove web-pod.yaml
